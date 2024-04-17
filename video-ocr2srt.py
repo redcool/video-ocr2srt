@@ -51,6 +51,8 @@ def main(args):
     # Configuring Pytesseract to use the correct language model
     pytesseractLanguage = args.language
 
+    pytesseractCmdPath = args.cmdPath
+
     # Configuring Pytesseract to blacklist letters
     pytesseractBlacklist = args.blacklist
 
@@ -107,6 +109,8 @@ def main(args):
 
         # Perform OCR on the original frame, not the resized one.
         if len(boxes) != 0:
+            # pytesseract.pytesseract.tesseract_cmd = r"D:/Program Files/Tesseract-OCR/tesseract"
+            pytesseract.pytesseract.tesseract_cmd = pytesseractCmdPath
             text = pytesseract.image_to_string(orig, config=f"-l {pytesseractLanguage} --oem 1 --psm 3 -c tessedit_char_blacklist={pytesseractBlacklist}")
 
             # Extract OCR confidence score
@@ -206,6 +210,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Extract text from video using OCR and generate SRT file')
     parser.add_argument('-v', '--video', help='Path to the video file', required=True)
     parser.add_argument('-m', '--model', help='Path to the pre-trained EAST text detector model', required=True)
+    parser.add_argument('-cmdPath', '--cmdPath', help='tessoract path', required=True)
     parser.add_argument('-l', '--language', help='Language model for Pytesseract', default='eng')
     parser.add_argument('-f', '--frame_rate', help='Number of frames to skip for processing', type=int, default=10)
     parser.add_argument('-p', '--preview', help='Enable preview of the video with bounding boxes', action='store_true')

@@ -22,10 +22,11 @@ The script leverages the [EAST text detector](https://arxiv.org/abs/1704.03155v2
 
 Additionally, you will need to have the EAST text detector model file. You can download it from this [link](https://github.com/argman/EAST) or find it in the model directory of this repository.
 
+
 ### Usage
 
 ```sh
-python video-ocr2srt.py -v <path_to_video> -m <path_to_model> [-l <language>] [-f <frame_rate>] [-p]
+python video-ocr2srt.py -v <path_to_video> -m <path_to_model> -cmdPath <path_to_tesseract.exe> [-l <language>] [-f <frame_rate>] [-p]
 ```
 
 Where:
@@ -44,3 +45,16 @@ python video-ocr2srt.py -v video.mp4 -m east_model.pb
 ```
 
 The script will process the video, performing OCR on the specified frames, and will output an SRT subtitle file with the same name as the input video file, in the format `<video_filename>_<language>_<timestamp>.srt`.
+
+### Download EAST Model
+https://github.com/oyyd/frozen_east_text_detection.pb
+
+### Download tesseract
+https://github.com/tesseract-ocr/tesseract
+window pack
+https://github.com/UB-Mannheim/tesseract/wiki
+
+### UsageDemo
+py video-ocr2srt.py -v d:/ocr/1.mp4 -m d:/ocr/frozen_east_text_detection.pb -cmdPath 'D:\Program Files\Tesseract-OCR\tesseract.exe'
+or
+edit run.bat, double click it.

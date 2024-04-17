@@ -1,0 +1,1 @@
+py video-ocr2srt.py -v d:/ocr/1.mp4 -m d:/ocr/frozen_east_text_detection.pb -cmdPath 'D:\Program Files\Tesseract-OCR\tesseract.exe'
